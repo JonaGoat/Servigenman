@@ -7,10 +7,11 @@ from django.test import TestCase
 class LoginViewTests(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
+
             username="jona",
             password="200328",
-            first_name="Jona",
-            last_name="Pérez",
+            first_name="Jonathan",
+            last_name="Morales",
         )
 
     def test_login_success(self):

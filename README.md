@@ -29,4 +29,5 @@ npm run dev  # http://localhost:3000
 ### Autenticación
 - **Endpoint**: `POST /api/login/`
 - **Body**: `{ "username": "jona", "password": "200328" }`
+- **Body**: `{ "username": "usuario", "password": "secreto" }`
 - Devuelve un mensaje de éxito y los datos básicos del usuario cuando las credenciales son válidas.
