@@ -3,6 +3,8 @@
 *.log
 .env
 .env.*
+!backend/.env.example
+!frontend/.env.example
 
 # Backend (Django)
 backend/.venv/
