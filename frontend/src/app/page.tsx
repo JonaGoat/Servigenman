@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
 type LoginSuccess = {
   message: string;
@@ -16,14 +16,34 @@ type LoginError = {
   error?: string;
 };
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [success, setSuccess] = useState<LoginSuccess | null>(null);
+
+  const apiBaseUrl = useMemo(() => {
+    const sanitizeBaseUrl = (url: string) => url.replace(/\/+$/, "");
+
+    const envUrl = process.env.NEXT_PUBLIC_API_URL?.trim();
+    if (envUrl) {
+      return sanitizeBaseUrl(envUrl);
+    }
+
+    if (typeof window === "undefined") {
+      return "";
+    }
+
+    if (window.location.hostname === "localhost") {
+      return sanitizeBaseUrl("http://localhost:8000");
+    }
+
+    const origin = window.location.origin ?? "";
+    return origin ? sanitizeBaseUrl(origin) : "";
+  }, []);
+
+  const loginUrl = apiBaseUrl ? `${apiBaseUrl}/api/login/` : "/api/login/";
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -32,7 +52,7 @@ export default function LoginPage() {
     setSuccess(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/login/`, {
+      const response = await fetch(loginUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
