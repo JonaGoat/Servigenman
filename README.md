@@ -16,14 +16,14 @@ python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 
-Las variables definidas en `.env` permiten configurar la clave secreta, el debug, los hosts permitidos y los orígenes CORS/CSRF.
+Las variables definidas en `.env` permiten configurar la clave secreta, el debug, los hosts permitidos y los orígenes CORS/CSRF. Los valores de ejemplo ya contemplan tanto `http://localhost:3000` como `http://127.0.0.1:3000` para que el frontend pueda comunicarse con la API sin problemas de CORS/CSRF durante el desarrollo local.
 
 ### Frontend
 ```
 cd frontend
 npm install
 cp .env.example .env
-npm run dev  # http://localhost:3000
+npm run dev  # http://localhost:3000 (o http://127.0.0.1:3000)
 ```
 
 ### Autenticación

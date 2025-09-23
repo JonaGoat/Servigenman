@@ -132,11 +132,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CORS / CSRF configuration for frontend integration
+_DEFAULT_FRONTEND_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
 CORS_ALLOWED_ORIGINS = _get_list(
-    os.getenv("DJANGO_CORS_ALLOWED_ORIGINS"), ["http://localhost:3000"]
+    os.getenv("DJANGO_CORS_ALLOWED_ORIGINS"), _DEFAULT_FRONTEND_ORIGINS
 )
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = _get_list(
-    os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS"), ["http://localhost:3000"]
+    os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS"), _DEFAULT_FRONTEND_ORIGINS
 )
