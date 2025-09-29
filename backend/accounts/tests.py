@@ -48,3 +48,24 @@ class LoginViewTests(TestCase):
         self.assertEqual(
             response.json()["error"], "Username and password are required."
         )
+
+    def test_login_accepts_usuario_alias(self):
+        response = self.client.post(
+            "/api/login/",
+            data=json.dumps({"usuario": "  jona  ", "password": "200328"}),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["user"]["username"], "jona")
+
+    def test_login_handles_invalid_json(self):
+        response = self.client.post(
+            "/api/login/",
+            data="not-json",
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()["error"], "Invalid JSON payload.")

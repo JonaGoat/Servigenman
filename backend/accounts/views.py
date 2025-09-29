@@ -22,8 +22,9 @@ def login_view(request):
     if payload is None:
         return JsonResponse({"error": "Invalid JSON payload."}, status=400)
 
-    username = payload.get("username")
-    password = payload.get("password")
+    username = (payload.get("username") or payload.get("usuario") or "").strip()
+    password_raw = payload.get("password")
+    password = password_raw if isinstance(password_raw, str) else ""
 
     if not username or not password:
         return JsonResponse(
