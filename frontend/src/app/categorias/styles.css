@@ -1,13 +1,43 @@
 :root {
+  --categories-surface: rgba(255, 255, 255, 0.95);
+  --categories-border: rgba(32, 110, 190, 0.2);
+  --categories-text: #10253e;
+  --categories-muted: #56677f;
+  --categories-highlight: linear-gradient(135deg, #2e78ff, #1ac6ff);
+  --categories-shadow: 0 20px 48px rgba(18, 43, 72, 0.16);
+  --categories-divider: rgba(30, 110, 190, 0.18);
+  --categories-placeholder-bg: rgba(234, 244, 255, 0.75);
+  --categories-placeholder-border: rgba(30, 110, 190, 0.2);
+  --categories-nav-border: rgba(30, 110, 190, 0.25);
+  --categories-nav-bg: rgba(30, 110, 190, 0.12);
+  --categories-nav-hover: rgba(30, 110, 190, 0.2);
+  --categories-stat-label: rgba(16, 38, 63, 0.6);
+  --categories-card-hover-border: rgba(46, 150, 255, 0.6);
+  --categories-card-hover-shadow: 0 28px 70px rgba(18, 43, 72, 0.2);
+  --categories-empty-bg: rgba(245, 250, 255, 0.9);
+  --categories-empty-border: rgba(30, 110, 190, 0.25);
+  --categories-footer-color: rgba(18, 44, 72, 0.7);
+}
+
+body[data-theme="dark"] {
   --categories-surface: rgba(10, 35, 60, 0.9);
   --categories-border: rgba(80, 150, 220, 0.35);
   --categories-text: #eaf2ff;
   --categories-muted: #9bb4d3;
   --categories-highlight: linear-gradient(135deg, #6d78ff, #2ad1ff);
   --categories-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
-}
-
-body[data-theme="dark"] {
+  --categories-divider: rgba(255, 255, 255, 0.08);
+  --categories-placeholder-bg: rgba(14, 32, 52, 0.6);
+  --categories-placeholder-border: rgba(255, 255, 255, 0.15);
+  --categories-nav-border: rgba(120, 160, 220, 0.45);
+  --categories-nav-bg: rgba(10, 25, 45, 0.72);
+  --categories-nav-hover: rgba(22, 44, 70, 0.88);
+  --categories-stat-label: rgba(234, 242, 255, 0.66);
+  --categories-card-hover-border: rgba(120, 200, 255, 0.75);
+  --categories-card-hover-shadow: 0 28px 70px rgba(0, 0, 0, 0.6);
+  --categories-empty-bg: rgba(8, 20, 38, 0.7);
+  --categories-empty-border: rgba(120, 160, 220, 0.45);
+  --categories-footer-color: var(--categories-muted);
   color-scheme: dark;
 }
 
@@ -62,7 +92,7 @@ body[data-theme="dark"] {
 }
 
 .categories-hero__hint {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--categories-divider);
   padding-top: 16px;
   font-size: 0.95rem;
 }
@@ -121,18 +151,18 @@ body[data-theme="dark"] {
   place-items: center;
   color: var(--categories-muted);
   font-style: italic;
-  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border: 1px dashed var(--categories-placeholder-border);
   border-radius: 18px;
   padding: 28px;
-  background: rgba(14, 32, 52, 0.6);
+  background: var(--categories-placeholder-bg);
 }
 
 .cat-nav {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(120, 160, 220, 0.45);
-  background: rgba(10, 25, 45, 0.72);
+  border: 1px solid var(--categories-nav-border);
+  background: var(--categories-nav-bg);
   color: var(--categories-text);
   font-size: 26px;
   display: inline-flex;
@@ -145,7 +175,7 @@ body[data-theme="dark"] {
 
 .cat-nav:hover:not(:disabled) {
   transform: translateY(-2px);
-  background: rgba(22, 44, 70, 0.88);
+  background: var(--categories-nav-hover);
 }
 
 .cat-nav:disabled {
@@ -177,8 +207,8 @@ body[data-theme="dark"] {
 .category-card:focus-visible,
 .category-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(120, 200, 255, 0.75);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.6);
+  border-color: var(--categories-card-hover-border);
+  box-shadow: var(--categories-card-hover-shadow);
   outline: none;
 }
 
@@ -214,7 +244,7 @@ body[data-theme="dark"] {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(234, 242, 255, 0.66);
+  color: var(--categories-stat-label);
 }
 
 .category-card__stats dd {
@@ -228,7 +258,7 @@ body[data-theme="dark"] {
   align-items: center;
   justify-content: space-between;
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--categories-divider);
   color: var(--categories-muted);
   font-weight: 600;
   font-size: 0.92rem;
@@ -248,17 +278,17 @@ body[data-theme="dark"] {
   margin: 0;
   padding: 20px;
   border-radius: 18px;
-  background: rgba(8, 20, 38, 0.7);
-  border: 1px dashed rgba(120, 160, 220, 0.45);
+  background: var(--categories-empty-bg);
+  border: 1px dashed var(--categories-empty-border);
   color: var(--categories-muted);
   text-align: center;
 }
 
 .categories-footer {
   text-align: center;
-  color: var(--categories-muted);
+  color: var(--categories-footer-color);
   font-size: 0.85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--categories-divider);
   padding-top: 20px;
   margin-top: auto;
 }

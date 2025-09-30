@@ -1,4 +1,19 @@
 :root {
+  --budget-surface: rgba(255, 255, 255, 0.95);
+  --budget-border: rgba(32, 110, 190, 0.2);
+  --budget-shadow: 0 20px 48px rgba(18, 43, 72, 0.16);
+  --budget-muted: #566b88;
+  --budget-text: #10243f;
+  --budget-panel: rgba(245, 250, 255, 0.94);
+  --budget-panel-border: rgba(32, 110, 190, 0.2);
+  --budget-chip: rgba(46, 120, 255, 0.14);
+  --budget-card-shadow: 0 12px 36px rgba(18, 43, 72, 0.16);
+  --budget-panel-shadow: 0 16px 40px rgba(18, 43, 72, 0.18);
+  --budget-table-head: rgba(46, 120, 255, 0.12);
+  --budget-footer-color: rgba(18, 44, 72, 0.7);
+}
+
+body[data-theme="dark"] {
   --budget-surface: rgba(12, 34, 58, 0.92);
   --budget-border: rgba(82, 150, 220, 0.32);
   --budget-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
@@ -7,9 +22,10 @@
   --budget-panel: rgba(10, 29, 52, 0.88);
   --budget-panel-border: rgba(90, 150, 220, 0.35);
   --budget-chip: rgba(109, 120, 255, 0.18);
-}
-
-body[data-theme="dark"] {
+  --budget-card-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  --budget-panel-shadow: 0 16px 44px rgba(0, 0, 0, 0.4);
+  --budget-table-head: rgba(109, 120, 255, 0.12);
+  --budget-footer-color: var(--budget-muted);
   color-scheme: dark;
 }
 
@@ -74,7 +90,7 @@ body[data-theme="dark"] {
   border: 1px solid var(--budget-panel-border);
   border-radius: 18px;
   padding: 20px 22px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--budget-card-shadow);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -111,7 +127,7 @@ body[data-theme="dark"] {
   border: 1px solid var(--budget-panel-border);
   border-radius: 22px;
   padding: 26px;
-  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--budget-panel-shadow);
   min-height: 320px;
   display: flex;
   flex-direction: column;
@@ -159,7 +175,7 @@ body[data-theme="dark"] {
 }
 
 .table-sm thead th {
-  background: rgba(109, 120, 255, 0.12);
+  background: var(--budget-table-head);
   color: var(--budget-text);
 }
 
@@ -180,7 +196,7 @@ body[data-theme="dark"] {
 
 .budget-footer {
   text-align: center;
-  color: var(--budget-muted);
+  color: var(--budget-footer-color);
   font-size: 0.95rem;
 }
 

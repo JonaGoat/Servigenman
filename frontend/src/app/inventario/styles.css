@@ -1,4 +1,53 @@
 :root {
+  --inventory-bg: rgba(255, 255, 255, 0.92);
+  --inventory-panel: rgba(255, 255, 255, 0.95);
+  --inventory-border: rgba(32, 110, 190, 0.18);
+  --inventory-text: #10263f;
+  --inventory-muted: #556784;
+  --inventory-accent: linear-gradient(120deg, #2e78ff, #1ac6ff);
+  --inventory-danger: #d65c5c;
+  --inventory-success: #1f9d77;
+  --inventory-shadow: 0 18px 42px rgba(18, 43, 72, 0.16);
+  --inventory-surface: rgba(247, 251, 255, 0.94);
+  --inventory-input-bg: rgba(255, 255, 255, 0.95);
+  --inventory-input-border: rgba(32, 110, 190, 0.24);
+  --inventory-chip: rgba(46, 120, 255, 0.14);
+  --inventory-header-bg: rgba(255, 255, 255, 0.9);
+  --inventory-header-shadow: 0 12px 28px rgba(18, 43, 72, 0.15);
+  --inventory-header-sheen: linear-gradient(
+    120deg,
+    rgba(70, 140, 220, 0.18),
+    rgba(26, 198, 255, 0.14)
+  );
+  --inventory-switch-bg: rgba(200, 215, 235, 0.8);
+  --inventory-switch-border: rgba(140, 170, 210, 0.6);
+  --inventory-switch-knob: linear-gradient(135deg, #2e78ff, #1ac6ff);
+  --inventory-switch-shadow: 0 4px 12px rgba(30, 110, 190, 0.22);
+  --inventory-nav-item-bg: rgba(30, 110, 190, 0.1);
+  --inventory-nav-item-color: var(--inventory-text);
+  --inventory-nav-item-active-color: #0a1f3a;
+  --inventory-focus-border: rgba(46, 140, 255, 0.75);
+  --inventory-focus-ring: rgba(46, 140, 255, 0.2);
+  --inventory-neutral-button-border: rgba(30, 110, 190, 0.24);
+  --inventory-neutral-button-bg: rgba(30, 110, 190, 0.12);
+  --inventory-neutral-button-hover-bg: rgba(30, 110, 190, 0.2);
+  --inventory-neutral-button-hover-border: rgba(30, 110, 190, 0.3);
+  --inventory-popover-border: rgba(30, 110, 190, 0.2);
+  --inventory-popover-shadow: 0 18px 36px rgba(18, 43, 72, 0.16);
+  --inventory-popover-hover: rgba(30, 110, 190, 0.16);
+  --inventory-table-border: rgba(30, 110, 190, 0.18);
+  --inventory-table-stripe: rgba(30, 110, 190, 0.08);
+  --inventory-secondary-bg: rgba(247, 251, 255, 0.95);
+  --inventory-highlight-bg: rgba(30, 110, 190, 0.12);
+  --inventory-danger-bg: rgba(214, 92, 92, 0.14);
+  --inventory-danger-border: rgba(214, 92, 92, 0.32);
+  --inventory-danger-text: #a63f3f;
+  --inventory-pagination-bg: rgba(30, 110, 190, 0.18);
+  --inventory-pagination-hover: rgba(30, 110, 190, 0.28);
+  --inventory-footer-color: rgba(18, 44, 72, 0.7);
+}
+
+body[data-theme="dark"] {
   --inventory-bg: rgba(8, 26, 45, 0.72);
   --inventory-panel: rgba(10, 35, 60, 0.88);
   --inventory-border: rgba(70, 120, 170, 0.35);
@@ -12,9 +61,39 @@
   --inventory-input-bg: rgba(9, 33, 56, 0.88);
   --inventory-input-border: rgba(72, 125, 184, 0.45);
   --inventory-chip: rgba(38, 196, 255, 0.15);
-}
-
-body[data-theme="dark"] {
+  --inventory-header-bg: rgba(6, 22, 40, 0.88);
+  --inventory-header-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  --inventory-header-sheen: linear-gradient(
+    120deg,
+    rgba(109, 120, 255, 0.12),
+    rgba(42, 209, 255, 0.1)
+  );
+  --inventory-switch-bg: rgba(120, 160, 220, 0.28);
+  --inventory-switch-border: rgba(90, 130, 190, 0.48);
+  --inventory-switch-knob: linear-gradient(135deg, #ffffff, #cfe4ff);
+  --inventory-switch-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --inventory-nav-item-bg: rgba(110, 140, 200, 0.12);
+  --inventory-nav-item-color: var(--inventory-muted);
+  --inventory-nav-item-active-color: #041325;
+  --inventory-focus-border: rgba(90, 170, 255, 0.8);
+  --inventory-focus-ring: rgba(90, 170, 255, 0.18);
+  --inventory-neutral-button-border: rgba(110, 180, 255, 0.4);
+  --inventory-neutral-button-bg: rgba(90, 150, 220, 0.24);
+  --inventory-neutral-button-hover-bg: rgba(110, 180, 255, 0.36);
+  --inventory-neutral-button-hover-border: rgba(140, 210, 255, 0.5);
+  --inventory-popover-border: rgba(110, 180, 255, 0.2);
+  --inventory-popover-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --inventory-popover-hover: rgba(110, 180, 255, 0.18);
+  --inventory-table-border: rgba(110, 170, 255, 0.12);
+  --inventory-table-stripe: rgba(110, 170, 255, 0.08);
+  --inventory-secondary-bg: rgba(7, 24, 40, 0.78);
+  --inventory-highlight-bg: rgba(110, 170, 255, 0.14);
+  --inventory-danger-bg: rgba(255, 107, 107, 0.18);
+  --inventory-danger-border: rgba(255, 107, 107, 0.4);
+  --inventory-danger-text: #ffb6b6;
+  --inventory-pagination-bg: rgba(110, 170, 255, 0.28);
+  --inventory-pagination-hover: rgba(110, 170, 255, 0.38);
+  --inventory-footer-color: rgba(178, 198, 224, 0.85);
   color-scheme: dark;
 }
 
@@ -24,6 +103,11 @@ body.servigenman-login.inventory-layout {
   min-height: 100vh;
   padding: 0;
   overflow-y: auto;
+  color-scheme: light;
+}
+
+body.servigenman-login.inventory-layout[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 .inventory-page {
@@ -53,9 +137,9 @@ body.servigenman-login.inventory-layout {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(6, 22, 40, 0.88);
+  background: var(--inventory-header-bg);
   border-bottom: 1px solid var(--inventory-border);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--inventory-header-shadow);
   backdrop-filter: blur(18px);
 }
 
@@ -63,7 +147,7 @@ body.servigenman-login.inventory-layout {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(109, 120, 255, 0.12), rgba(42, 209, 255, 0.1));
+  background: var(--inventory-header-sheen);
   opacity: 0.4;
   pointer-events: none;
 }
@@ -106,8 +190,8 @@ body.servigenman-login.inventory-layout {
   width: 44px;
   height: 24px;
   border-radius: 20px;
-  background: rgba(120, 160, 220, 0.28);
-  border: 1px solid rgba(90, 130, 190, 0.48);
+  background: var(--inventory-switch-bg);
+  border: 1px solid var(--inventory-switch-border);
   display: inline-flex;
   align-items: center;
   padding: 3px;
@@ -121,8 +205,8 @@ body.servigenman-login.inventory-layout {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffffff, #cfe4ff);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background: var(--inventory-switch-knob);
+  box-shadow: var(--inventory-switch-shadow);
   transform: translateX(0px);
   transition: transform 0.2s ease;
 }
@@ -141,19 +225,19 @@ nav ul {
 }
 
 nav a {
-  color: var(--inventory-muted);
+  color: var(--inventory-nav-item-color);
   text-decoration: none;
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 999px;
   transition: background 0.2s ease, color 0.2s ease;
-  background: rgba(110, 140, 200, 0.12);
+  background: var(--inventory-nav-item-bg);
 }
 
 nav a[aria-current="page"],
 nav a:hover {
   background: var(--inventory-accent);
-  color: #041325;
+  color: var(--inventory-nav-item-active-color);
 }
 
 .inventory-main {
@@ -217,8 +301,8 @@ nav a:hover {
 
 .form-grid input:focus {
   outline: none;
-  border-color: rgba(90, 170, 255, 0.8);
-  box-shadow: 0 0 0 3px rgba(90, 170, 255, 0.18);
+  border-color: var(--inventory-focus-border);
+  box-shadow: 0 0 0 3px var(--inventory-focus-ring);
 }
 
 .boton-agregar {
@@ -268,8 +352,8 @@ select.filtro-input {
 
 .boton-limpiar,
 .boton-exportar {
-  border: 1px solid rgba(110, 180, 255, 0.4);
-  background: rgba(90, 150, 220, 0.24);
+  border: 1px solid var(--inventory-neutral-button-border);
+  background: var(--inventory-neutral-button-bg);
   color: var(--inventory-text);
   border-radius: 14px;
   padding: 12px 16px;
@@ -280,8 +364,8 @@ select.filtro-input {
 
 .boton-limpiar:hover,
 .boton-exportar:hover {
-  background: rgba(110, 180, 255, 0.36);
-  border-color: rgba(140, 210, 255, 0.5);
+  background: var(--inventory-neutral-button-hover-bg);
+  border-color: var(--inventory-neutral-button-hover-border);
 }
 
 .autocomplete-container {
@@ -294,9 +378,9 @@ select.filtro-input {
   left: 0;
   right: 0;
   background: var(--inventory-surface);
-  border: 1px solid rgba(110, 180, 255, 0.2);
+  border: 1px solid var(--inventory-popover-border);
   border-radius: 12px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--inventory-popover-shadow);
   max-height: 260px;
   overflow-y: auto;
   display: none;
@@ -314,7 +398,7 @@ select.filtro-input {
 }
 
 .sugerencia-item:hover {
-  background: rgba(110, 180, 255, 0.18);
+  background: var(--inventory-popover-hover);
 }
 
 .exportar-dropdown {
@@ -327,9 +411,9 @@ select.filtro-input {
   right: 0;
   min-width: 220px;
   background: var(--inventory-surface);
-  border: 1px solid rgba(110, 180, 255, 0.2);
+  border: 1px solid var(--inventory-popover-border);
   border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--inventory-popover-shadow);
   padding: 12px;
   display: none;
   z-index: 4;
@@ -351,7 +435,7 @@ select.filtro-input {
 
 .submenu-btn {
   border: none;
-  background: rgba(90, 150, 220, 0.25);
+  background: var(--inventory-neutral-button-bg);
   color: var(--inventory-text);
   border-radius: 12px;
   padding: 10px 12px;
@@ -362,7 +446,7 @@ select.filtro-input {
 }
 
 .submenu-btn:hover {
-  background: rgba(110, 180, 255, 0.38);
+  background: var(--inventory-neutral-button-hover-bg);
 }
 
 .submenu-content {
@@ -385,14 +469,14 @@ select.filtro-input {
 }
 
 .submenu-content a:hover {
-  background: rgba(110, 180, 255, 0.18);
+  background: var(--inventory-popover-hover);
 }
 
 .tabla-scroll {
   border: 1px solid var(--inventory-border);
   border-radius: 18px;
   overflow: hidden;
-  background: rgba(7, 24, 40, 0.78);
+  background: var(--inventory-secondary-bg);
 }
 
 #tablaRecursos {
@@ -402,7 +486,7 @@ select.filtro-input {
 }
 
 #tablaRecursos thead {
-  background: rgba(110, 170, 255, 0.14);
+  background: var(--inventory-highlight-bg);
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.6px;
@@ -412,11 +496,11 @@ select.filtro-input {
 #tablaRecursos td {
   padding: 14px 16px;
   text-align: left;
-  border-bottom: 1px solid rgba(110, 170, 255, 0.12);
+  border-bottom: 1px solid var(--inventory-table-border);
 }
 
 #tablaRecursos tbody tr:hover {
-  background: rgba(110, 170, 255, 0.08);
+  background: var(--inventory-table-stripe);
 }
 
 .thumb {
@@ -424,8 +508,8 @@ select.filtro-input {
   height: 48px;
   object-fit: cover;
   border-radius: 12px;
-  background: rgba(110, 170, 255, 0.12);
-  border: 1px solid rgba(110, 170, 255, 0.18);
+  background: var(--inventory-table-stripe);
+  border: 1px solid var(--inventory-table-border);
 }
 
 .tabla-acciones {
@@ -453,9 +537,9 @@ select.filtro-input {
 
 .boton-eliminar,
 .boton-cancelar {
-  background: rgba(255, 107, 107, 0.18);
-  color: #ffb6b6;
-  border: 1px solid rgba(255, 107, 107, 0.4);
+  background: var(--inventory-danger-bg);
+  color: var(--inventory-danger-text);
+  border: 1px solid var(--inventory-danger-border);
 }
 
 .boton-editar:hover,
@@ -477,7 +561,7 @@ select.filtro-input {
   padding: 10px 16px;
   border-radius: 12px;
   border: none;
-  background: rgba(110, 170, 255, 0.28);
+  background: var(--inventory-pagination-bg);
   color: var(--inventory-text);
   font-weight: 600;
   cursor: pointer;
@@ -490,12 +574,12 @@ select.filtro-input {
 }
 
 .paginacion button:not(:disabled):hover {
-  background: rgba(110, 170, 255, 0.38);
+  background: var(--inventory-pagination-hover);
 }
 
 .inventory-footer {
   text-align: center;
-  color: var(--inventory-muted);
+  color: var(--inventory-footer-color);
   font-size: 13px;
   padding-bottom: 16px;
 }
