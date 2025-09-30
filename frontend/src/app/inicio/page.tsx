@@ -17,6 +17,20 @@ type ResourcePreview = {
   info: string;
 };
 
+type CategoryPreview = {
+  name: string;
+  resources: number;
+  units: number;
+  value: number;
+};
+
+type BudgetSnapshot = {
+  label: string;
+  value: number | string;
+  detail: string;
+  trend?: "up" | "down";
+};
+
 const FEATURED_RESOURCES: ResourcePreview[] = [
   {
     id: 1,
@@ -41,6 +55,47 @@ const FEATURED_RESOURCES: ResourcePreview[] = [
     quantity: 3,
     price: 189000,
     info: "Tablero listo para montaje en terreno",
+  },
+];
+
+const CATEGORY_PREVIEW: CategoryPreview[] = [
+  {
+    name: "Materiales eléctricos",
+    resources: 18,
+    units: 84,
+    value: 4280000,
+  },
+  {
+    name: "Bombas de agua",
+    resources: 9,
+    units: 21,
+    value: 3515000,
+  },
+  {
+    name: "Herramientas especializadas",
+    resources: 6,
+    units: 32,
+    value: 1458000,
+  },
+];
+
+const BUDGET_SNAPSHOT: BudgetSnapshot[] = [
+  {
+    label: "Ejecución trimestral",
+    value: "54%",
+    detail: "Meta Q2: 62%",
+    trend: "up",
+  },
+  {
+    label: "Gasto del mes",
+    value: 1875000,
+    detail: "Abril 2024",
+    trend: "down",
+  },
+  {
+    label: "Saldo disponible",
+    value: 1640000,
+    detail: "Reservado para urgencias",
   },
 ];
 
@@ -239,6 +294,23 @@ export default function InicioPage() {
                 Explora el carrusel de categorías para segmentar recursos, asignar
                 responsables y activar filtros preconfigurados según cada área.
               </p>
+              <div className="home-panel__preview" aria-label="Resumen rápido de categorías">
+                <ul className="category-preview">
+                  {CATEGORY_PREVIEW.map((category) => (
+                    <li key={category.name} className="category-preview__item">
+                      <div>
+                        <p className="category-preview__name">{category.name}</p>
+                        <p className="category-preview__meta">
+                          {category.resources} recursos · {category.units} unidades
+                        </p>
+                      </div>
+                      <p className="category-preview__value">
+                        {currencyFormatter.format(category.value)}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <Link href="/categorias">Explorar categorías</Link>
             </article>
             <article className="home-panel">
@@ -247,6 +319,31 @@ export default function InicioPage() {
                 Visualiza el impacto financiero de los insumos mediante gráficas
                 y KPI en la sección de presupuesto.
               </p>
+              <div className="home-panel__preview" aria-label="Indicadores financieros destacados">
+                <ul className="budget-preview">
+                  {BUDGET_SNAPSHOT.map((item) => (
+                    <li key={item.label} className="budget-preview__item">
+                      <div className="budget-preview__header">
+                        <p className="budget-preview__label">{item.label}</p>
+                        {item.trend ? (
+                          <span
+                            className={`budget-preview__trend budget-preview__trend--${item.trend}`}
+                            aria-hidden="true"
+                          >
+                            {item.trend === "up" ? "▲" : "▼"}
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="budget-preview__value">
+                        {typeof item.value === "number"
+                          ? currencyFormatter.format(item.value)
+                          : item.value}
+                      </p>
+                      <p className="budget-preview__detail">{item.detail}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <Link href="/presupuesto">Abrir presupuesto</Link>
             </article>
           </section>
