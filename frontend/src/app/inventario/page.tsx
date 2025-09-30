@@ -18,21 +18,19 @@ export default function InventoryPage() {
     if (typeof document === "undefined") {
       return () => {};
     }
-
     const cleanup = initializeInventoryPage();
     return () => {
       cleanup();
     };
   }, []);
 
+  // Agrega/quita la clase en <body> para estilos del inventario
   useEffect(() => {
     if (typeof document === "undefined") {
       return () => {};
     }
-
     const inventoryClass = "inventory-layout";
     document.body.classList.add(inventoryClass);
-
     return () => {
       document.body.classList.remove(inventoryClass);
     };
@@ -45,6 +43,7 @@ export default function InventoryPage() {
         strategy="afterInteractive"
       />
       <AnimatedBackground />
+
       <div className="inventory-page">
         <header className="inventory-header">
           <div className="inventory-header__inner">
@@ -147,7 +146,7 @@ export default function InventoryPage() {
                       required
                     />
 
-                    <label className="visually-hidden" htmlFor="nuevaFoto">
+                    <label className="visualmente-hidden" htmlFor="nuevaFoto">
                       Foto
                     </label>
                     <input type="file" id="nuevaFoto" accept="image/*" />
@@ -239,12 +238,8 @@ export default function InventoryPage() {
                           Excel ▸
                         </button>
                         <div id="excelSub" className="submenu-content">
-                          <a href="#" data-export="excel-visible">
-                            Visible
-                          </a>
-                          <a href="#" data-export="excel-todo">
-                            Todo
-                          </a>
+                          <a href="#" data-export="excel-visible">Visible</a>
+                          <a href="#" data-export="excel-todo">Todo</a>
                         </div>
                       </div>
                       <div className="submenu">
@@ -252,12 +247,8 @@ export default function InventoryPage() {
                           CSV ▸
                         </button>
                         <div id="csvSub" className="submenu-content">
-                          <a href="#" data-export="csv-visible">
-                            Visible
-                          </a>
-                          <a href="#" data-export="csv-todo">
-                            Todo
-                          </a>
+                          <a href="#" data-export="csv-visible">Visible</a>
+                          <a href="#" data-export="csv-todo">Todo</a>
                         </div>
                       </div>
                     </div>
@@ -286,18 +277,12 @@ export default function InventoryPage() {
                       <td>Bombas de agua</td>
                       <td>5</td>
                       <td>120.00</td>
-                      <td data-foto="">
-                        <img className="thumb" src="" alt="" />
-                      </td>
+                      <td data-foto=""><img className="thumb" src="" alt="" /></td>
                       <td>Equipo básico</td>
                       <td>
                         <div className="tabla-acciones">
-                          <button type="button" className="boton-editar" data-action="edit">
-                            Editar
-                          </button>
-                          <button type="button" className="boton-eliminar" data-action="delete">
-                            Eliminar
-                          </button>
+                          <button type="button" className="boton-editar" data-action="edit">Editar</button>
+                          <button type="button" className="boton-eliminar" data-action="delete">Eliminar</button>
                         </div>
                       </td>
                     </tr>
@@ -307,18 +292,12 @@ export default function InventoryPage() {
                       <td>Repuestos</td>
                       <td>2</td>
                       <td>45.50</td>
-                      <td data-foto="">
-                        <img className="thumb" src="" alt="" />
-                      </td>
+                      <td data-foto=""><img className="thumb" src="" alt="" /></td>
                       <td>Incluye grasa</td>
                       <td>
                         <div className="tabla-acciones">
-                          <button type="button" className="boton-editar" data-action="edit">
-                            Editar
-                          </button>
-                          <button type="button" className="boton-eliminar" data-action="delete">
-                            Eliminar
-                          </button>
+                          <button type="button" className="boton-editar" data-action="edit">Editar</button>
+                          <button type="button" className="boton-eliminar" data-action="delete">Eliminar</button>
                         </div>
                       </td>
                     </tr>
@@ -327,13 +306,9 @@ export default function InventoryPage() {
               </div>
 
               <div className="paginacion">
-                <button type="button" id="btnAnterior">
-                  Anterior
-                </button>
+                <button type="button" id="btnAnterior">Anterior</button>
                 <span id="infoPagina">Página 1</span>
-                <button type="button" id="btnSiguiente">
-                  Siguiente
-                </button>
+                <button type="button" id="btnSiguiente">Siguiente</button>
               </div>
             </section>
           </main>
