@@ -1,0 +1,548 @@
+:root {
+  --inventory-bg: rgba(8, 26, 45, 0.72);
+  --inventory-panel: rgba(10, 35, 60, 0.88);
+  --inventory-border: rgba(70, 120, 170, 0.35);
+  --inventory-text: #eaf2ff;
+  --inventory-muted: #8ea8c9;
+  --inventory-accent: linear-gradient(120deg, #6d78ff, #2ad1ff);
+  --inventory-danger: #ff6b6b;
+  --inventory-success: #36d3a5;
+  --inventory-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+  --inventory-surface: rgba(6, 22, 40, 0.82);
+  --inventory-input-bg: rgba(9, 33, 56, 0.88);
+  --inventory-input-border: rgba(72, 125, 184, 0.45);
+  --inventory-chip: rgba(38, 196, 255, 0.15);
+}
+
+body[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body.servigenman-login.inventory-layout {
+  display: block;
+  min-height: 100vh;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.inventory-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--inventory-text);
+}
+
+.inventory-shell {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  color: var(--inventory-text);
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 120px 32px 72px;
+  box-sizing: border-box;
+}
+
+.inventory-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(6, 22, 40, 0.88);
+  border-bottom: 1px solid var(--inventory-border);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+}
+
+.inventory-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(109, 120, 255, 0.12), rgba(42, 209, 255, 0.1));
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.inventory-header__inner {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1180px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header-bar h1 {
+  margin: 0;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 0.3px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--inventory-muted);
+}
+
+.switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 20px;
+  background: rgba(120, 160, 220, 0.28);
+  border: 1px solid rgba(90, 130, 190, 0.48);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.switch::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff, #cfe4ff);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transform: translateX(0px);
+  transition: transform 0.2s ease;
+}
+
+#themeSwitch:checked + .switch::after {
+  transform: translateX(20px);
+}
+
+nav ul {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--inventory-muted);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+  background: rgba(110, 140, 200, 0.12);
+}
+
+nav a[aria-current="page"],
+nav a:hover {
+  background: var(--inventory-accent);
+  color: #041325;
+}
+
+.inventory-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.inventory-card {
+  background: var(--inventory-panel);
+  border: 1px solid var(--inventory-border);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: var(--inventory-shadow);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.inventory-card__heading h2 {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.inventory-card__heading p {
+  margin: 6px 0 0;
+  color: var(--inventory-muted);
+}
+
+.inventory-section h3 {
+  margin: 0 0 14px;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+
+.inventory-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px 18px;
+}
+
+.form-grid input[type="text"],
+.form-grid input[type="number"],
+.form-grid input[type="file"] {
+  width: 100%;
+  background: var(--inventory-input-bg);
+  border: 1px solid var(--inventory-input-border);
+  color: var(--inventory-text);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-grid input:focus {
+  outline: none;
+  border-color: rgba(90, 170, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(90, 170, 255, 0.18);
+}
+
+.boton-agregar {
+  align-self: flex-start;
+  padding: 12px 28px;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: var(--inventory-accent);
+  color: #041325;
+  box-shadow: 0 16px 40px rgba(42, 209, 255, 0.28),
+    0 2px 0 rgba(255, 255, 255, 0.08) inset;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.boton-agregar:hover {
+  filter: brightness(1.05);
+}
+
+.boton-agregar:active {
+  transform: translateY(1px);
+}
+
+.filters-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px 18px;
+  align-items: flex-start;
+}
+
+.filtro-input,
+.autocomplete-container input,
+select.filtro-input {
+  background: var(--inventory-input-bg);
+  border: 1px solid var(--inventory-input-border);
+  color: var(--inventory-text);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  width: 100%;
+}
+
+select.filtro-input {
+  appearance: none;
+}
+
+.boton-limpiar,
+.boton-exportar {
+  border: 1px solid rgba(110, 180, 255, 0.4);
+  background: rgba(90, 150, 220, 0.24);
+  color: var(--inventory-text);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border 0.2s ease;
+}
+
+.boton-limpiar:hover,
+.boton-exportar:hover {
+  background: rgba(110, 180, 255, 0.36);
+  border-color: rgba(140, 210, 255, 0.5);
+}
+
+.autocomplete-container {
+  position: relative;
+}
+
+.autocomplete-box {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--inventory-surface);
+  border: 1px solid rgba(110, 180, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  max-height: 260px;
+  overflow-y: auto;
+  display: none;
+  z-index: 3;
+}
+
+.autocomplete-box.show {
+  display: block;
+}
+
+.sugerencia-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  color: var(--inventory-text);
+}
+
+.sugerencia-item:hover {
+  background: rgba(110, 180, 255, 0.18);
+}
+
+.exportar-dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 220px;
+  background: var(--inventory-surface);
+  border: 1px solid rgba(110, 180, 255, 0.2);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  padding: 12px;
+  display: none;
+  z-index: 4;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.submenu + .submenu {
+  margin-top: 12px;
+}
+
+.submenu-btn {
+  border: none;
+  background: rgba(90, 150, 220, 0.25);
+  color: var(--inventory-text);
+  border-radius: 12px;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.submenu-btn:hover {
+  background: rgba(110, 180, 255, 0.38);
+}
+
+.submenu-content {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 10px;
+}
+
+.submenu-content.show {
+  display: flex;
+}
+
+.submenu-content a {
+  color: var(--inventory-text);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.submenu-content a:hover {
+  background: rgba(110, 180, 255, 0.18);
+}
+
+.tabla-scroll {
+  border: 1px solid var(--inventory-border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(7, 24, 40, 0.78);
+}
+
+#tablaRecursos {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+#tablaRecursos thead {
+  background: rgba(110, 170, 255, 0.14);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+}
+
+#tablaRecursos th,
+#tablaRecursos td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(110, 170, 255, 0.12);
+}
+
+#tablaRecursos tbody tr:hover {
+  background: rgba(110, 170, 255, 0.08);
+}
+
+.thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: rgba(110, 170, 255, 0.12);
+  border: 1px solid rgba(110, 170, 255, 0.18);
+}
+
+.tabla-acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.boton-editar,
+.boton-eliminar,
+.boton-guardar,
+.boton-cancelar {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.boton-editar,
+.boton-guardar {
+  background: var(--inventory-accent);
+  color: #041325;
+}
+
+.boton-eliminar,
+.boton-cancelar {
+  background: rgba(255, 107, 107, 0.18);
+  color: #ffb6b6;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+}
+
+.boton-editar:hover,
+.boton-guardar:hover,
+.boton-eliminar:hover,
+.boton-cancelar:hover {
+  filter: brightness(1.05);
+}
+
+.paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.paginacion button {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(110, 170, 255, 0.28);
+  color: var(--inventory-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginacion button:not(:disabled):hover {
+  background: rgba(110, 170, 255, 0.38);
+}
+
+.inventory-footer {
+  text-align: center;
+  color: var(--inventory-muted);
+  font-size: 13px;
+  padding-bottom: 16px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .inventory-header__inner {
+    padding: 22px 24px;
+  }
+
+  .inventory-shell {
+    padding: 100px 24px 60px;
+  }
+
+  .inventory-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inventory-header__inner {
+    padding: 18px;
+  }
+
+  .inventory-shell {
+    padding: 96px 18px 56px;
+  }
+
+  .header-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    justify-content: flex-start;
+  }
+
+  #tablaRecursos {
+    min-width: 100%;
+  }
+}

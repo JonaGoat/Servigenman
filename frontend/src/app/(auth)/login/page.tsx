@@ -1,7 +1,8 @@
 "use client";
 
 import type { Metadata } from "next";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { LoginCard } from "./components/LoginCard";
@@ -14,6 +15,7 @@ import type { LoginError, LoginSuccess } from "./types";
 import "./styles.css";
 
 const LOGIN_PATH = "/api/login/";
+const shouldUseApiLogin = process.env.NEXT_PUBLIC_ENABLE_LOGIN_API === "true";
 
 export const metadata: Metadata = {
   title: "SERVIGENMAN — Portal Interno",
@@ -26,6 +28,7 @@ export default function LoginPage() {
   useSplashSequence();
   useWaterRippleCleanup();
 
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -61,8 +64,22 @@ export default function LoginPage() {
       return;
     }
 
-    setLoading(true);
     setErrorMessage(null);
+
+    if (!shouldUseApiLogin) {
+      setSuccess({
+        message: "Inicio de sesión exitoso.",
+        user: {
+          username: sanitizedUsername,
+          first_name: "",
+          last_name: "",
+          email: "",
+        },
+      });
+      return;
+    }
+
+    setLoading(true);
     setSuccess(null);
 
     try {
@@ -113,6 +130,12 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (success) {
+      router.push("/inicio");
+    }
+  }, [router, success]);
 
   return (
     <>
