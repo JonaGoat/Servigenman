@@ -18,21 +18,19 @@ export default function InventoryPage() {
     if (typeof document === "undefined") {
       return () => {};
     }
-
     const cleanup = initializeInventoryPage();
     return () => {
       cleanup();
     };
   }, []);
 
+  // Mantener este useEffect extra: agrega una clase al <body> para estilos de inventario
   useEffect(() => {
     if (typeof document === "undefined") {
       return () => {};
     }
-
     const inventoryClass = "inventory-layout";
     document.body.classList.add(inventoryClass);
-
     return () => {
       document.body.classList.remove(inventoryClass);
     };
@@ -45,6 +43,7 @@ export default function InventoryPage() {
         strategy="afterInteractive"
       />
       <AnimatedBackground />
+
       <div className="inventory-page">
         <header className="inventory-header">
           <div className="inventory-header__inner">
