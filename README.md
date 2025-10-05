@@ -28,6 +28,17 @@ npm run dev  # http://localhost:3000 (o http://127.0.0.1:3000)
 
 ### Autenticación
 - **Endpoint**: `POST /api/login/`
-- **Body**: `{ "username": "jona", "password": "200328" }`
 - **Body**: `{ "username": "usuario", "password": "secreto" }`
-- Devuelve un mensaje de éxito y los datos básicos del usuario cuando las credenciales son válidas.
+- Devuelve un mensaje de éxito, los datos básicos del usuario y (si Auth0 está habilitado) los tokens obtenidos.
+
+#### Configuración de Auth0
+1. Crea una aplicación **Regular Web Application** en Auth0 y habilita el flujo "Resource Owner Password".
+2. Completa las siguientes variables en `backend/.env`:
+   - `AUTH0_DOMAIN`
+   - `AUTH0_CLIENT_ID`
+   - `AUTH0_CLIENT_SECRET`
+   - Opcionales: `AUTH0_AUDIENCE`, `AUTH0_SCOPE`, `AUTH0_REALM`, `AUTH0_TIMEOUT`
+3. Asegúrate de exponer el endpoint `https://<AUTH0_DOMAIN>/oauth/token` en tus reglas de firewall.
+4. En el frontend (`frontend/.env`) define `NEXT_PUBLIC_ENABLE_LOGIN_API=true` para activar la llamada al backend.
+
+El backend sincroniza los nombres y correo entregados por Auth0 con el modelo de usuario de Django y almacena los tokens (`access_token`, `id_token`, etc.) en la respuesta para que el frontend pueda reutilizarlos.

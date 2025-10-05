@@ -132,6 +132,33 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
+    if (!success || typeof window === "undefined") {
+      return;
+    }
+
+    try {
+      const sanitizedTokens = success.tokens
+        ? Object.fromEntries(
+            Object.entries(success.tokens).filter(([, value]) =>
+              value !== undefined && value !== null
+            )
+          )
+        : null;
+
+      if (sanitizedTokens && Object.keys(sanitizedTokens).length > 0) {
+        window.localStorage.setItem(
+          "auth0Tokens",
+          JSON.stringify(sanitizedTokens)
+        );
+      }
+
+      window.localStorage.setItem("auth0User", JSON.stringify(success.user));
+    } catch {
+      // Ignored: storage is best-effort only.
+    }
+  }, [success]);
+
+  useEffect(() => {
     if (success) {
       router.push("/inicio");
     }
