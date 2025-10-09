@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { LoginCard } from "./components/LoginCard";
 import { SplashOverlay } from "./components/SplashOverlay";
+import { FALLBACK_CREDENTIALS } from "./constants";
 import { useAnimatedRays } from "./hooks/useAnimatedRays";
 import { useBodyClass } from "./hooks/useBodyClass";
 import { useSplashSequence } from "./hooks/useSplashSequence";
@@ -67,14 +68,20 @@ export default function LoginPage() {
     setErrorMessage(null);
 
     if (!shouldUseApiLogin) {
+      const matchesUsername =
+        sanitizedUsername.toLowerCase() ===
+        FALLBACK_CREDENTIALS.username.toLowerCase();
+      const matchesPassword = password === FALLBACK_CREDENTIALS.password;
+
+      if (!matchesUsername || !matchesPassword) {
+        setErrorMessage("Usuario o contraseña incorrectos.");
+        setSuccess(null);
+        return;
+      }
+
       setSuccess({
         message: "Inicio de sesión exitoso.",
-        user: {
-          username: sanitizedUsername,
-          first_name: "",
-          last_name: "",
-          email: "",
-        },
+        user: FALLBACK_CREDENTIALS.user,
       });
       return;
     }
